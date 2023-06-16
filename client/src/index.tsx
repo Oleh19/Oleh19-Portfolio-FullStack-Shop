@@ -4,6 +4,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import { AnimatePresence } from 'framer-motion';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import myReducers from './store/reducers';
+
+const store = createStore(myReducers);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,9 +17,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <BrowserRouter>
-    <AnimatePresence>
-      <App />
-    </AnimatePresence>
+      <AnimatePresence>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </AnimatePresence>
     </BrowserRouter>
   </StrictMode>
 );

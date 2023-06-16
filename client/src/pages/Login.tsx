@@ -6,7 +6,6 @@ import { FaEnvelope, FaLock, FcGoogle } from '../assets/icons';
 import { motion } from 'framer-motion';
 import { buttonClick } from '../animations';
 
-<<<<<<< HEAD
 import {
   getAuth,
   signInWithPopup,
@@ -17,27 +16,36 @@ import {
 import { app } from '../config/firebase.config';
 import { validateUserJWTToken } from '../api';
 import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserDetails } from '../store/actions/userActions';
+import { UserState } from '../store/reducers/userReducer';
+import { useEffect } from 'react';
 
-=======
->>>>>>> 836ea06 (Login Screen)
 export const Login: FC = () => {
   const [userEmail, setUserEmail] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
   const [password, setPassword] = useState('');
   const [confirm_password, setConfirm_password] = useState('');
 
-<<<<<<< HEAD
   const firebaseAuth = getAuth(app);
-  const provider = new GoogleAuthProvider();
+  const provider: GoogleAuthProvider = new GoogleAuthProvider();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state: UserState) => state.user);
 
-  const loginWithGoogle = async () => {
+  useEffect(() => {
+    if (user) {
+      navigate('/', { replace: true });
+    }
+  }, [user]);
+
+  const loginWithGoogle = async (): Promise<void> => {
     await signInWithPopup(firebaseAuth, provider).then((userCred) => {
       firebaseAuth.onAuthStateChanged((cred) => {
         if (cred) {
           cred.getIdToken().then((token) => {
             validateUserJWTToken(token).then((data) => {
-              console.log(data);
+              dispatch(setUserDetails(data));
             });
             navigate('/', { replace: true });
           });
@@ -46,7 +54,7 @@ export const Login: FC = () => {
     });
   };
 
-  const signUpWithEmailPass = async () => {
+  const signUpWithEmailPass = async (): Promise<void> => {
     if (userEmail === '' || password === '' || confirm_password === '') {
       console.log('Empty');
     } else {
@@ -58,14 +66,12 @@ export const Login: FC = () => {
           firebaseAuth,
           userEmail,
           password
-        ).then((userCred) => {
+        ).then((userCred: any) => {
           firebaseAuth.onAuthStateChanged((cred) => {
             if (cred) {
               cred.getIdToken().then((token) => {
                 validateUserJWTToken(token).then((data) => {
-                  setUserEmail('');
-                  setConfirm_password('');
-                  setPassword('');
+                  dispatch(setUserDetails(data));
                 });
                 navigate('/', { replace: true });
               });
@@ -77,14 +83,16 @@ export const Login: FC = () => {
     }
   };
 
-  const signInWithEmailPass = async () => {
+  const signInWithEmailPass = async (): Promise<void> => {
     if (userEmail !== '' && password !== '') {
       await signInWithEmailAndPassword(firebaseAuth, userEmail, password).then(
         (userCred) => {
           firebaseAuth.onAuthStateChanged((cred) => {
             if (cred) {
               cred.getIdToken().then((token) => {
-                validateUserJWTToken(token).then((data) => {});
+                validateUserJWTToken(token).then((data) => {
+                  dispatch(setUserDetails(data));
+                });
                 navigate('/', { replace: true });
               });
             }
@@ -95,8 +103,6 @@ export const Login: FC = () => {
     }
   };
 
-=======
->>>>>>> 836ea06 (Login Screen)
   return (
     <div className="w-screen h-screen relative overflow-hidden flex">
       <img
@@ -177,20 +183,14 @@ export const Login: FC = () => {
           <motion.button
             {...buttonClick}
             className="w-full px-4 py-2 rounded-md bg-red-500 cursor-pointer text-white text-xl capitalize hover:bg-red-600 transition-all duration-150"
-<<<<<<< HEAD
             onClick={signUpWithEmailPass}
-=======
->>>>>>> 836ea06 (Login Screen)
           >
             Sign Up
           </motion.button>
         ) : (
           <motion.button
             {...buttonClick}
-<<<<<<< HEAD
             onClick={signInWithEmailPass}
-=======
->>>>>>> 836ea06 (Login Screen)
             className="w-full px-4 py-2 rounded-md bg-red-500 cursor-pointer text-white text-xl capitalize hover:bg-red-600 transition-all duration-150"
           >
             Sign In
@@ -206,12 +206,8 @@ export const Login: FC = () => {
 
           <motion.div
             {...buttonClick}
-<<<<<<< HEAD
             className="flex items-center justify-center px-20 py-2 mt-5 bg-lightOverlay backdrop-blur-md cursor-pointer rounded-3xl gap-4"
             onClick={loginWithGoogle}
-=======
-            className="flex items-center justify-center px-20 py-2 bg-lightOverlay backdrop-blur-md cursor-pointer rounded-3xl gap-4"
->>>>>>> 836ea06 (Login Screen)
           >
             <FcGoogle className="text-3xl" />
             <p className="capitalize text-baze text-headingColor">

@@ -9,11 +9,5 @@
     "target": "es2017"
   },
   "compileOnSave": true,
-<<<<<<< HEAD
-  "include": ["./src", "index.ts"]
-=======
-  "include": [
-    "src"
-  ]
->>>>>>> 836ea06 (Login Screen)
+  "include": ["./src", "src", "index.ts"]
 }
