@@ -6,19 +6,21 @@ import { getAuth } from '@firebase/auth';
 import { app } from './config/firebase.config';
 import { useEffect } from 'react';
 import { validateUserJWTToken } from './api';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserDetails } from './store/actions/userActions';
 import { motion } from 'framer-motion';
 import { fadeInOut } from './animations';
+import { Alert, MainLoader } from './components';
+import { AlertActions } from './store/actions/alertActions';
 
 const App: FC = () => {
   const firebaseAuth = getAuth(app);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const alert = useSelector((state: AlertActions) => state.alert);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setIsLoading(true);
     firebaseAuth.onAuthStateChanged((cred) => {
       if (cred) {
         cred.getIdToken().then((token) => {
@@ -26,11 +28,13 @@ const App: FC = () => {
             dispatch(setUserDetails(data));
           });
         });
-      }else
-      setInterval(() => {
-        setIsLoading(false)
-      }, 3000)
+        setIsLoading(false);
+      } else
+        setInterval(() => {
+          setIsLoading(false);
+        }, 3000);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -40,7 +44,7 @@ const App: FC = () => {
           {...fadeInOut}
           className="fixed z-50 inset-0 bg-lightOverlay backdrop-blur-md flex items-center justify-center w-full"
         >
-          The Data Is Loading...
+          <MainLoader />
         </motion.div>
       )}
       <Routes>
@@ -53,6 +57,13 @@ const App: FC = () => {
           element={<Login />}
         />
       </Routes>
+
+      {alert?.type && (
+        <Alert
+          type={alert.type}
+          message={alert.message}
+        />
+      )}
     </div>
   );
 };

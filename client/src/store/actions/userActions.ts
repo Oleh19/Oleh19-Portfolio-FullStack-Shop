@@ -7,6 +7,11 @@ interface GetUserDetailsAction {
   type: 'GET_USER';
 }
 
+interface SetUserNull {
+  type: 'SET_USER_NULL';
+  user: null;
+}
+
 export const setUserDetails = (user: any): SetUserDetailsAction => {
   return {
     type: 'SET_USER',
@@ -17,5 +22,12 @@ export const setUserDetails = (user: any): SetUserDetailsAction => {
 export const getUserDetails = (): GetUserDetailsAction => {
   return {
     type: 'GET_USER',
+  };
+};
+
+export const setUserNull = (): SetUserNull => {
+  return {
+    type: 'SET_USER_NULL',
+    user: null,
   };
 };

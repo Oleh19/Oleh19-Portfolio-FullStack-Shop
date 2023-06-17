@@ -20,6 +20,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUserDetails } from '../store/actions/userActions';
 import { UserState } from '../store/reducers/userReducer';
 import { useEffect } from 'react';
+import {
+  AlertActions,
+  alertInfo,
+  alertWarning,
+} from '../store/actions/alertActions';
 
 export const Login: FC = () => {
   const [userEmail, setUserEmail] = useState('');
@@ -31,12 +36,15 @@ export const Login: FC = () => {
   const provider: GoogleAuthProvider = new GoogleAuthProvider();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const user = useSelector((state: UserState) => state.user);
+  const alert = useSelector((state: AlertActions) => state.alert);
 
   useEffect(() => {
     if (user) {
       navigate('/', { replace: true });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const loginWithGoogle = async (): Promise<void> => {
@@ -56,7 +64,7 @@ export const Login: FC = () => {
 
   const signUpWithEmailPass = async (): Promise<void> => {
     if (userEmail === '' || password === '' || confirm_password === '') {
-      console.log('Empty');
+      dispatch(alertInfo('Required fields should not be empty'));
     } else {
       if (password === confirm_password) {
         setUserEmail('');
@@ -79,6 +87,7 @@ export const Login: FC = () => {
           });
         });
       } else {
+        dispatch(alertWarning("Password doesn't match"));
       }
     }
   };
@@ -100,6 +109,7 @@ export const Login: FC = () => {
         }
       );
     } else {
+      dispatch(alertWarning("Password doesn't match"));
     }
   };
 
