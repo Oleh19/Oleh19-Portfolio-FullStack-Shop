@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Login, Main } from './pages';
+import { Dashboard, Login, Main } from './pages';
 import './index.css';
 import { getAuth } from '@firebase/auth';
 import { app } from './config/firebase.config';
@@ -55,6 +55,10 @@ const App: FC = () => {
         <Route
           path="/login"
           element={<Login />}
+        />
+        <Route
+          path="/dashboard/*"
+          element={<Dashboard />}
         />
       </Routes>
 

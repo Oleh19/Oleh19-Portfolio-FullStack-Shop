@@ -24,7 +24,10 @@ app.get('/', (req: any, res: any) => {
   return res.send('Hello');
 });
 
-const userRoute = require('/Users/olegilcenko/Desktop/Portfolio/Portfolio-foodShop/server/functions/routes/user.ts')
-app.use("/api/users", userRoute)
+const userRoute = require('/Users/olegilcenko/Desktop/Portfolio/Portfolio-foodShop/server/functions/routes/user.ts');
+app.use('/api/users', userRoute);
+
+const productRoute = require('/Users/olegilcenko/Desktop/Portfolio/Portfolio-foodShop/server/functions/routes/products.ts');
+app.use('/api/products/', productRoute);
 
 exports.app = functions.https.onRequest(app);
