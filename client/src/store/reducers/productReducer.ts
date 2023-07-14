@@ -1,4 +1,4 @@
-const productReducer = (state = null, action: any) => {
+const productReducer = (state = [], action: any) => {
   switch (action.type) {
     case 'GET_ALL_PRODUCTS':
       return state;

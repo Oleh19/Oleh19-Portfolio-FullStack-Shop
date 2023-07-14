@@ -6,7 +6,7 @@ import './index.css';
 import { AnimatePresence } from 'framer-motion';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import myReducers from './store/reducers';
+import myReducers from './store';
 
 const store = createStore(myReducers);
 

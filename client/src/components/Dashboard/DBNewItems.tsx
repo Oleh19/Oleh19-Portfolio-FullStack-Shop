@@ -7,11 +7,10 @@ import {
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { FaCloudUploadAlt, MdDelete } from '../../assets/icons';
 import { statuses } from '../../utils/utils';
-import Spinner from '../Spinner';
+import Spinner from '../UI/Spinner';
 import { storage } from '../../config/firebase.config';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
-  AlertActions,
   alertDanger,
   alertNull,
   alertSuccess,
@@ -44,7 +43,6 @@ const DBNewItems: FC = () => {
     string | null | undefined
   >(null);
 
-  const alert = useSelector((state: AlertActions) => state.alert);
   const dispatch = useDispatch();
 
   const uploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {

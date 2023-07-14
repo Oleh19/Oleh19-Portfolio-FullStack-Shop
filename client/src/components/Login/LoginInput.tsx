@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { FC, HTMLInputTypeAttribute, ReactNode, useState } from 'react';
-import { fadeInOut } from '../animations';
+import { fadeInOut } from '../../animations';
 
 interface LoginInputProps {
   placeholder: string;
@@ -18,7 +18,7 @@ const LoginInput: FC<LoginInputProps> = ({
   inputState,
   inputStateFunc,
 }) => {
-  const [isFocus, setIsFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState<boolean>(false);
 
   return (
     <motion.div

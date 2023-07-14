@@ -4,11 +4,19 @@ import { deleteProduct, getAllProducts } from '../../api';
 import { alertNull, alertSuccess } from '../../store/actions/alertActions';
 import { setAllProducts } from '../../store/actions/productActions';
 import DataTable from './DataTable';
+import { useEffect } from 'react';
 
 const DBItems = () => {
-  const products = useSelector((state: any) => state.products);
   const dispatch = useDispatch();
+  const products = useSelector((state: any) => state.products);
 
+  useEffect(() => {
+    getAllProducts().then((data) => {
+      dispatch(setAllProducts(data));
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
   return (
     <div className="flex items-center justify-self-center gap-4 pt-6 w-full">
       <DataTable
@@ -43,6 +51,7 @@ const DBItems = () => {
             ),
           },
         ]}
+        // data={items}
         data={products}
         title="List of Products"
         actions={[

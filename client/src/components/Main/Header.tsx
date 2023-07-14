@@ -1,23 +1,26 @@
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { buttonClick, slideTop } from '../animations';
-import { avatar, logo } from '../assets/images';
+import { buttonClick, slideTop } from '../../animations';
+import { avatar, logo } from '../../assets/images';
 import {
   headerRoutes,
   isActiveStyles,
   isNotActiveStyles,
-} from '../utils/utils';
-import { MdShoppingCart, MdLogout } from '../assets/icons';
+} from '../../utils/utils';
+import { MdShoppingCart, MdLogout } from '../../assets/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { UserState } from '../store/reducers/userReducer';
+import { UserState } from '../../store/reducers/userReducer';
 import { getAuth } from '@firebase/auth';
-import { app } from '../config/firebase.config';
-import { setUserNull } from '../store/actions/userActions';
+import { app } from '../../config/firebase.config';
+import { setUserNull } from '../../store/actions/userActions';
+import { setCartOn } from '../../store/actions/displayCartAction';
 
 const Header: FC = () => {
-  const [isMenu, setIsMenu] = useState(false);
   const user = useSelector((state: UserState) => state.user);
+  const cart = useSelector((state: any) => state.cart);
+
+  const [isMenu, setIsMenu] = useState<boolean>(false);
   const firebaseAuth = getAuth(app);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -47,7 +50,7 @@ const Header: FC = () => {
       </NavLink>
 
       <nav className=" flex items-center justify-center gap-8 ">
-        <ul className="hidden md:flex items-center justify-center gap-16">
+        <ul className="hidden lg:flex items-center justify-center">
           {headerRoutes.map((route, index) => (
             <NavLink
               key={index}
@@ -63,12 +66,17 @@ const Header: FC = () => {
 
         <motion.div
           {...buttonClick}
+          onClick={() => dispatch(setCartOn())}
           className="relative cursor-pointer"
         >
           <MdShoppingCart className="text-3xl text-textColor" />
-          <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center absolute -top-4 -right-1">
-            <p className="text-primary text-base font-semibold">19</p>
-          </div>
+          {cart?.length > 0 && (
+            <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center absolute -top-4 -right-1">
+              <p className="text-primary text-base font-semibold">
+                {cart.length}
+              </p>
+            </div>
+          )}
         </motion.div>
 
         {user ? (

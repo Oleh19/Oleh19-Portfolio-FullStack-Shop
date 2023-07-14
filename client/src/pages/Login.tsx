@@ -21,16 +21,15 @@ import { setUserDetails } from '../store/actions/userActions';
 import { UserState } from '../store/reducers/userReducer';
 import { useEffect } from 'react';
 import {
-  AlertActions,
   alertInfo,
   alertWarning,
 } from '../store/actions/alertActions';
 
 export const Login: FC = () => {
-  const [userEmail, setUserEmail] = useState('');
-  const [isSignUp, setIsSignUp] = useState(false);
-  const [password, setPassword] = useState('');
-  const [confirm_password, setConfirm_password] = useState('');
+  const [userEmail, setUserEmail] = useState<string>('');
+  const [isSignUp, setIsSignUp] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>('');
+  const [confirm_password, setConfirm_password] = useState<string>('');
 
   const firebaseAuth = getAuth(app);
   const provider: GoogleAuthProvider = new GoogleAuthProvider();
@@ -38,7 +37,6 @@ export const Login: FC = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state: UserState) => state.user);
-  const alert = useSelector((state: AlertActions) => state.alert);
 
   useEffect(() => {
     if (user) {
@@ -208,15 +206,15 @@ export const Login: FC = () => {
         )}
 
         <div>
-          <div className="flex items-center justify-between gap-16">
-            <div className="w-28 h-[1px] rounded-md bg-white"></div>
+          <div className="flex items-center justify-between sm:gap-16 gap-8">
+            <div className="sm:w-28 w-20 h-[1px] rounded-md bg-white"></div>
             <p className="text-white">Or</p>
-            <div className="w-28 h-[1px] rounded-md bg-white"></div>
+            <div className="sm:w-28 w-20 h-[1px] rounded-md bg-white"></div>
           </div>
 
           <motion.div
             {...buttonClick}
-            className="flex items-center justify-center px-20 py-2 mt-5 bg-lightOverlay backdrop-blur-md cursor-pointer rounded-3xl gap-4"
+            className="flex items-center justify-center px-12 sm:px-20 py-2 mt-5 bg-lightOverlay backdrop-blur-md cursor-pointer rounded-3xl gap-4"
             onClick={loginWithGoogle}
           >
             <FcGoogle className="text-3xl" />

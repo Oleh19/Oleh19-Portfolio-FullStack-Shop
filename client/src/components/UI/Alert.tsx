@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
-import { fadeInOut } from '../animations';
-import { FaCheck, BsExclamationTriangleFill } from '../assets/icons';
+import { fadeInOut } from '../../animations';
+import { FaCheck, BsExclamationTriangleFill } from '../../assets/icons';
 
 interface AlertProps {
   type: string;

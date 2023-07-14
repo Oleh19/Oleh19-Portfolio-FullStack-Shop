@@ -8,3 +8,4 @@ Technologies that are used:
 - Framer motion
 - React icons
 - Matetial UI
+- Swiper

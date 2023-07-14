@@ -5,17 +5,18 @@ import './index.css';
 import { getAuth } from '@firebase/auth';
 import { app } from './config/firebase.config';
 import { useEffect } from 'react';
-import { validateUserJWTToken } from './api';
+import { getAllCartItems, validateUserJWTToken } from './api';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserDetails } from './store/actions/userActions';
 import { motion } from 'framer-motion';
 import { fadeInOut } from './animations';
 import { Alert, MainLoader } from './components';
 import { AlertActions } from './store/actions/alertActions';
+import { setCartItems } from './store/actions/cartActions';
 
 const App: FC = () => {
   const firebaseAuth = getAuth(app);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const alert = useSelector((state: AlertActions) => state.alert);
 
   const dispatch = useDispatch();
@@ -25,6 +26,11 @@ const App: FC = () => {
       if (cred) {
         cred.getIdToken().then((token) => {
           validateUserJWTToken(token).then((data) => {
+            if (data) {
+              getAllCartItems(data.user_id).then((items) => {
+                dispatch(setCartItems(items));
+              });
+            }
             dispatch(setUserDetails(data));
           });
         });
