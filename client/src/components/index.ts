@@ -8,7 +8,6 @@ export { default as DBHeader } from './Dashboard/DBHeader';
 export { default as DBHome } from './Dashboard/DBHome';
 export { default as DBItems } from './Dashboard/DBItems';
 export { default as DBNewItems } from './Dashboard/DBNewItems';
-export { default as DBOrders } from './Dashboard/DBOrders';
 export { default as DataTable } from './Dashboard/DataTable';
 export { default as Spinner } from './UI/Spinner';
 export {default as Home } from './Main/Home'

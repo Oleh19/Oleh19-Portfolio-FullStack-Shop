@@ -9,10 +9,10 @@
     "target": "es2017",
     "baseUrl": "./",
     "paths": {
-      "*": ["src/*"]
+      "*": ["functions/*"]
     },
     "resolveJsonModule": true
   },
   "compileOnSave": true,
-  "include": ["src", "index.ts"]
+  "include": ["functions", "index.ts"]
 }

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { logo } from '../../assets/images';
 import { isActiveStyles, isNotActiveStyles } from '../../utils/utils';
 
@@ -15,7 +15,7 @@ const DBLeftSection: FC = () => {
           alt="logo"
           className="w-12"
         />
-        <p className="font-semibold text-xl">City</p>
+        <p className="font-semibold text-xl">Pet-Project</p>
       </NavLink>
       <hr />
 
@@ -29,16 +29,6 @@ const DBLeftSection: FC = () => {
           }
         >
           Home
-        </NavLink>
-        <NavLink
-          to={'/dashboard/orders'}
-          className={({ isActive }) =>
-            isActive
-              ? `${isActiveStyles} px-4 py-2 border-l-8  border-red-500`
-              : isNotActiveStyles
-          }
-        >
-          Orders
         </NavLink>
         <NavLink
           to={'/dashboard/items'}
@@ -68,12 +58,12 @@ const DBLeftSection: FC = () => {
             <p className="text-2xl font-bold text-red-500">?</p>
           </div>
           <p className="text-xl text-primary font-semibold">Help Center</p>
-          <p className="text-base text-gray-300 text-center">
-            Having trouble in city. Please contact us for more questions
-          </p>
-          <p className="px-4 py-2 mb-2 rounded-full bg-primary text-red-400 cursor-pointer">
+          <div className="text-base text-gray-300 text-center">
+            Having trouble in Pet-Project. Please contact us for more questions
+          </div>
+          <Link to='/contact-us' className="px-4 py-2 mb-2 rounded-full bg-primary text-red-400 cursor-pointer">
             Get in touch
-          </p>
+          </Link>
         </div>
       </div>
     </div>

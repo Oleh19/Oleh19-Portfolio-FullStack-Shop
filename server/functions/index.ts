@@ -5,7 +5,7 @@ const app = express();
 
 require('dotenv').config();
 
-const serviceAccountKey = require('/Users/olegilcenko/Desktop/Portfolio/Portfolio-foodShop/server/functions/serviceAccountKey.json');
+const serviceAccountKey = require('../serviceAccountKey.json');
 
 app.use(express.json());
 
@@ -24,10 +24,10 @@ app.get('/', (req: any, res: any) => {
   return res.send('Hello');
 });
 
-const userRoute = require('/Users/olegilcenko/Desktop/Portfolio/Portfolio-foodShop/server/functions/routes/user.ts');
+const userRoute = require('./user');
 app.use('/api/users', userRoute);
 
-const productRoute = require('/Users/olegilcenko/Desktop/Portfolio/Portfolio-foodShop/server/functions/routes/products.ts');
+const productRoute = require('./products');
 app.use('/api/products/', productRoute);
 
 exports.app = functions.https.onRequest(app);

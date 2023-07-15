@@ -33,12 +33,7 @@ const DBHeader: FC = () => {
 
   return (
     <div className="flex w-full items-center justify-between gap-3">
-      <p className="">
-        Welcome to City
-        {user?.name && (
-          <span className="block text-base text-gray-500">{`Hello ${user.name}...!`}</span>
-        )}
-      </p>
+    
 
       <div className="flex items-center justify-center gap-4">
         <div className="flex items-center justify-center gap-3 px-4 py-2 bg-lightOverlay backdrop-blur-md shadow-md rounded-md">

@@ -1,3 +1,10 @@
+Functional:
+
+- Registration and auth
+- Cart
+- Dashboard
+- Slider with items
+
 Technologies that are used:
 
 - TypeScript

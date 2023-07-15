@@ -4,7 +4,6 @@ import { DBHeader } from '../index';
 import DBHome from './DBHome';
 import DBItems from './DBItems';
 import DBNewItems from './DBNewItems';
-import DBOrders from './DBOrders';
 
 const DBRightSection: FC = () => {
   return (
@@ -15,10 +14,6 @@ const DBRightSection: FC = () => {
           <Route
             path="/home"
             element={<DBHome />}
-          />
-          <Route
-            path="/orders"
-            element={<DBOrders />}
           />
           <Route
             path="/items"

@@ -126,7 +126,7 @@ export const Login: FC = () => {
             alt=""
             className="w-8"
           />
-          <p className="text-headingColor font-semibold text-2xl">City</p>
+          <p className="text-headingColor font-semibold text-2xl">Pet-Project</p>
         </div>
 
         <p className="text-3xl font-semibold text-headingColor">Welcome Back</p>

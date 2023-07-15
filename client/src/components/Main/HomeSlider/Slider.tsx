@@ -23,7 +23,7 @@ const Slider: FC = () => {
     if (products.length !== 0) {
       setFruits(
         products?.filter(
-          (data: IProducts) => data.product_category === 'fruits'
+          (data: IProducts) => data.product_category === 'drinks'
         )
       );
     }

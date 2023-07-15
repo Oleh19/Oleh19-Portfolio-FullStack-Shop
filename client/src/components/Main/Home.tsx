@@ -20,7 +20,7 @@ const Home: FC = () => {
         </div>
 
         <p className="text-[40px] text-headingColor md:text-[72px] font-sans font-extrabold tracking-wider">
-          The Best Service in <span className="text-red-600">Your City</span>
+          The Best Service in <span className="text-red-600">Pet-Project</span>
         </p>
 
         <p className="text-textColor text-lg">

@@ -36,7 +36,7 @@ const Header: FC = () => {
   };
 
   return (
-    <header className=" fixed backdrop-blur-md z-50 inset-x-0 top-0 flex items-center justify-between px-12 md:px-20 py-6 ">
+    <header className=" fixed backdrop-blur-md z-50 inset-x-0 top-0 flex items-center justify-between px-12 md:px-20 py-6 shadow-md ">
       <NavLink
         to={'/'}
         className="flex items-center justify-center gap-4"
@@ -46,7 +46,7 @@ const Header: FC = () => {
           alt="Logo"
           className="w-12"
         />
-        <p className=" font-semibold text-xl">City</p>
+        <p className=" font-semibold text-xl">Pet-Project</p>
       </NavLink>
 
       <nav className=" flex items-center justify-center gap-8 ">
@@ -98,25 +98,13 @@ const Header: FC = () => {
                 <motion.div
                   {...slideTop}
                   onMouseLeave={() => setIsMenu(false)}
-                  className=" px-6 py-4 w-48 border-l-lightOverlay backdrop-blur-md rounded-md shadow-md absolute top-12 right-0 flex flex-col gap-4"
+                  className=" px-6 py-4 w-48 border-l-lightOverlay bg-white rounded-md shadow-md absolute top-12 right-0 flex flex-col gap-4"
                 >
                   <Link
                     className="hover:text-red-500 text-xl text-textColor"
                     to={'/dashboard/home'}
                   >
                     Dashboard
-                  </Link>
-                  <Link
-                    className="hover:text-red-500 text-xl text-textColor"
-                    to={'/profile'}
-                  >
-                    Profile
-                  </Link>
-                  <Link
-                    className="hover:text-red-500 text-xl text-textColor"
-                    to={'/user-orders'}
-                  >
-                    Orders
                   </Link>
                   <hr />
 

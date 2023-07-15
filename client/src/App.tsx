@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Dashboard, Login, Main } from './pages';
+import { ContactUs, Dashboard, Login, Main } from './pages';
 import './index.css';
 import { getAuth } from '@firebase/auth';
 import { app } from './config/firebase.config';
@@ -66,6 +66,11 @@ const App: FC = () => {
           path="/dashboard/*"
           element={<Dashboard />}
         />
+        <Route
+          path="/contact-us"
+          element={<ContactUs />}
+        />
+
       </Routes>
 
       {alert?.type && (
